@@ -28,4 +28,4 @@ async def main():
     await writer.wait_closed()
 
 if __name__ == '__main__':
-    asyncio.run(asyncio.gather(main()))  
+    asyncio.run(asyncio.gather(main()))
