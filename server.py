@@ -1,6 +1,13 @@
 import asyncio
 import os
 
+async def read_file(file_path):
+    file_contents = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            file_contents.append(line.strip())
+    return file_contents
+
 async def handle_client(reader, writer):
     curr_dir = os.getcwd()
     while True:
@@ -41,13 +48,6 @@ async def handle_client(reader, writer):
         except (ConnectionResetError, BrokenPipeError):
             print("Connection closed")
             break
-
-async def read_file(file_path):
-    file_contents = []
-    with open(file_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            file_contents.append(line.strip())
-    return file_contents
 
 async def main():
     server = await asyncio.start_server(handle_client, '127.0.0.1', 8888)
